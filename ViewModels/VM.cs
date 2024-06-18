@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using WPF_MVVM.Models;
+using WPF_MVVM.Entity;
 using Timer = System.Timers.Timer;
 
 namespace WPF_MVVM.ViewModels
@@ -14,36 +16,85 @@ namespace WPF_MVVM.ViewModels
     {
         public VM()
         {
-            Timer timer = new Timer();
-            timer.Interval = 1000;
-            timer.Elapsed += Timer_Elapsed;
-            timer.Start();
+            _server = new Server();
+            _server.EventTradeDelegate += _server_EventTradeDelegate;
 
         }
+
+        
+
+        //==================== Fields =================================
+        Server _server;
+
         //==================== Properties =============================
 
-        public int Number
+        public decimal Volume
         {
-            get => _number;
+            get => _volume;
             set
             {
-                _number = value;
-                OnPropertyChanged(nameof(Number));
+                _volume = value;
+                OnPropertyChanged(nameof(Volume));
             }
         }
-        int _number;
+        decimal _volume;
 
-        //==================== Fields ================================= 
-
-        Random _random = new Random();
-
-        //==================== Methods ================================
-        private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
+        public decimal Price
         {
-            Number = _random.Next(0, 101);
+            get => _price;
+            set
+            {
+                _price = value;
+                OnPropertyChanged(nameof(Price));
+            }
+        }
+        decimal _price;
+
+        public DateTime DateTimeTrade
+        {
+            get => _dateTimeTrade;
+            set
+            {
+                _dateTimeTrade = value;
+                OnPropertyChanged(nameof(DateTimeTrade));
+            }
+        }
+        DateTime _dateTimeTrade;
+
+        public Side TradeSide
+        {
+            get => _side;
+            set
+            {
+                _side = value;
+                OnPropertyChanged(nameof(TradeSide));
+            }
+        }
+        Side _side;
+
+        public decimal Summ
+        {
+            get => _summ;
+            set
+            {
+                _summ = value;
+                OnPropertyChanged(nameof(Summ));
+            }
+        }
+        decimal _summ;
+        //==================== Methods =============
+        private void _server_EventTradeDelegate(Trade trade)
+        {
+            Volume = trade.Volume;
+            Price = trade.Price;
+            DateTimeTrade = trade.DateTime;
+            Summ += Volume;
+            
         }
 
-        
-        
+
+
+
+
     }
 }

@@ -5,13 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_MVVM" xmlns:viewmodels="clr-namespace:WPF_MVVM.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:VM}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Lesson 1.11" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Height" Value="60"/>
+            <!--<Setter Property="Width" Value="450"/>-->
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Margin" Value="0, 5"/>
+        </Style>
+    </Window.Resources>
+    
     <Grid>
-        <TextBlock Text="{Binding Number}" 
-                   Width="100"
-                   Height="30"
-                   Foreground="red"
-                   FontSize="26"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0"  Orientation="Vertical">
+            <TextBlock Text="Summ =" />
+            <TextBlock Text="Volume =" />
+            <TextBlock Text="Price =" />
+            <TextBlock Text="DateTimeTrade =" />
+            <TextBlock Text="Side =" />
+
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"  Orientation="Vertical">
+        <TextBlock Text="{Binding Summ}" />
+        <TextBlock Text="{Binding Volume}" />
+        <TextBlock Text="{Binding Price}" />
+        <TextBlock Text="{Binding DateTimeTrade, StringFormat={}{0:s}}" />
+        <TextBlock Text="{Binding TradeSide}" />
+
+        </StackPanel>
+        
+        
         
     </Grid>
 </Window>
