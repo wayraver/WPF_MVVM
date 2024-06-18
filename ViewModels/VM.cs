@@ -22,8 +22,8 @@ namespace WPF_MVVM.ViewModels
         }
 
         
-
         //==================== Fields =================================
+        
         Server _server;
 
         //==================== Properties =============================
@@ -63,14 +63,14 @@ namespace WPF_MVVM.ViewModels
 
         public Side TradeSide
         {
-            get => _side;
+            get => _tradeSide;
             set
             {
-                _side = value;
+                _tradeSide = value;
                 OnPropertyChanged(nameof(TradeSide));
             }
         }
-        Side _side;
+        Side _tradeSide;
 
         public decimal Summ
         {
@@ -82,6 +82,7 @@ namespace WPF_MVVM.ViewModels
             }
         }
         decimal _summ;
+
         //==================== Methods =============
         private void _server_EventTradeDelegate(Trade trade)
         {
@@ -89,6 +90,7 @@ namespace WPF_MVVM.ViewModels
             Price = trade.Price;
             DateTimeTrade = trade.DateTime;
             Summ += Volume;
+            TradeSide = trade.Side;
             
         }
 

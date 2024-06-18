@@ -14,7 +14,7 @@ namespace WPF_MVVM.Entity
             get => _volume;
             set
             {
-                Volume = value;
+                _volume = value;
                 if (Volume > 0)
                 {
                     Side = Side.Long;
