@@ -29,7 +29,7 @@ namespace WPF_MVVM.Models
         {
             Trade trade = new Trade();
 
-            trade.Volume = _random.Next(-10, 10);   
+            trade.Volume = _random.Next(-10, 11);   
             trade.Price = _random.Next(50000, 60000);
             trade.DateTime = DateTime.Now;  
 
